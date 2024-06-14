@@ -33,4 +33,4 @@ func main() {
 	url.Web(site)
 	log.Fatal(site.Listen(musik.Dangdut()))
 }
-//  https://ws-irgi2024-8b615be21b10.herokuapp.com/
+//  https://ws-irgi2024-8b615be21b10.herokuapp.com
