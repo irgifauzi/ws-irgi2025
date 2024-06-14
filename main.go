@@ -12,7 +12,20 @@ import (
 
 
 	"github.com/gofiber/fiber/v2"
+	_ "github.com/irgifauzi/ws-irgi2025/docs"
 )
+
+// @title TES SWAGGER ULBI
+// @version 1.0
+// @description This is a sample swagger for Fiber
+
+// @contact.name API Support
+// @contact.url https://github.com/irgifauzi
+// @contact.email 714220035@std.ulbi.ac.id
+
+// @host ws-irgi2024-8b615be21b10.herokuapp.com
+// @BasePath /
+// @schemes https http
 
 func main() {
 	site := fiber.New(config.Iteung)
