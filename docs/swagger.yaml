@@ -91,6 +91,54 @@ definitions:
         example: "08123456789"
         type: string
     type: object
+  controller.ReqKaryawan:
+    properties:
+      hari_kerja:
+        example:
+        - Senin
+        - Selasa
+        - Rabu
+        - Kamis
+        - Jumat
+        - Sabtu
+        - Minggu
+        items:
+          type: string
+        type: array
+      jabatan:
+        example: Anonymous
+        type: string
+      jam_kerja:
+        items:
+          $ref: '#/definitions/controller.JamKerja'
+        type: array
+      nama:
+        example: Tes Swagger
+        type: string
+      phone_number:
+        example: "08123456789"
+        type: string
+    type: object
+  controller.ReqPresensi:
+    properties:
+      biodata:
+        $ref: '#/definitions/controller.ReqKaryawan'
+      checkin:
+        example: Masuk
+        type: string
+      latitude:
+        example: 123.12
+        type: number
+      location:
+        example: Bandung
+        type: string
+      longitude:
+        example: 123.11
+        type: number
+      phone_number:
+        example: "08123456789"
+        type: string
+    type: object
 host: ws-irgi2024-8b615be21b10.herokuapp.com
 info:
   contact:
@@ -101,6 +149,29 @@ info:
   title: TES SWAGGER ULBI
   version: "1.0"
 paths:
+  /delete/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Hapus data presensi.
+      parameters:
+      - description: Masukan ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+        "500":
+          description: Internal Server Error
+      summary: Delete data presensi.
+      tags:
+      - Presensi
   /ins:
     post:
       consumes:
@@ -112,7 +183,7 @@ paths:
         name: request
         required: true
         schema:
-          $ref: '#/definitions/controller.Presensi'
+          $ref: '#/definitions/controller.ReqPresensi'
       produces:
       - application/json
       responses:
@@ -167,6 +238,37 @@ paths:
         "500":
           description: Internal Server Error
       summary: Get By ID Data Presensi.
+      tags:
+      - Presensi
+  /update/{id}:
+    put:
+      consumes:
+      - application/json
+      description: Ubah data presensi.
+      parameters:
+      - description: Masukan ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Payload Body [RAW]
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/controller.ReqPresensi'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controller.Presensi'
+        "400":
+          description: Bad Request
+        "500":
+          description: Internal Server Error
+      summary: Update data presensi.
       tags:
       - Presensi
 schemes:
